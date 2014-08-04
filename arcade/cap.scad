@@ -1,7 +1,13 @@
 $fn=60;
 
+// thickness of the wall.
+wall_thickness = 1;
 
-wall_thickness = 1; // thickness of the wall.
+// diameter of the plunger
+plunger_diameter = 22;
+// height of the plunger
+plunger_height = 5;
+
 
 /* values from happ:
 (i assume their values are inches, since there is no unit...)
@@ -22,20 +28,22 @@ module torus(r, d){
 }
 
 module plunger(d, h, convex){
-		difference(){
-			translate([0,0,h/2])
-			union(){
-				cylinder( h=h, r=d/2, center=true);
-				translate([0,0,h/2])
-					torus( r=d/10, d=d );
-				translate([0,0,h/2])
-					cylinder( h=d/5, r=d/2 - d/10, center=true);
+	translate([0,0,-wall_thickness])
+	difference(){
+		union(){
+			difference(){
+				torus( r=d/10, d=d );
+				translate([0,0,d/2])
+					cube( [d,d,d], center=true );
 			}
-			translate([0,0,-wall_thickness])
-				cylinder( h=(h/2)+wall_thickness, r=d/2-wall_thickness, center=false);
+			translate([0,0,-d/10])
+				cylinder( h=d/10, r=d/2 - d/10, center=false);
+			cylinder( h=h-(d/10), r=d/2 , center=false);
 		}
+		translate([0,0,wall_thickness])
+			cylinder( h=h-(d/10), r=d/2-1 , center=false);
+	}
 }
 
-plunger(d=22, h=5, convex=true);
-
+plunger(d=plunger_diameter, h=plunger_height, convex=true);
 
