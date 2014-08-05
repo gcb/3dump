@@ -17,16 +17,19 @@ plunger_concave = false;
 // put a cross under the cap for reinforcement. it was done very quick and dirty just so you can add a better one if you need by looking at the code.
 plunger_reinforcement = true;
 
-
-// rotate it upside down for 1) print easier, 2) look better on thingverse screen shot
-translate([0,0,plunger_height]){
-	plunger(d=plunger_diameter, h=plunger_height, concave=plunger_concave);
-	mx_mount();
-	if( true == plunger_reinforcement ){
-		translate([0,0,wall_thickness/2 ]){
-			cube([plunger_diameter-wall_thickness,wall_thickness,wall_thickness], center=true);
-			rotate([0,0,90])
+module cherry_mx_plunger(d, h, concave, reinforcement){
+	// rotate it upside down for 1) print easier, 2) look better on thingverse screen shot
+	translate([0,0,plunger_height]){
+		plunger(d=plunger_diameter, h=plunger_height, concave=plunger_concave);
+		mx_mount();
+		if( true == plunger_reinforcement ){
+			translate([0,0,wall_thickness/2 ]){
 				cube([plunger_diameter-wall_thickness,wall_thickness,wall_thickness], center=true);
+				rotate([0,0,90])
+					cube([plunger_diameter-wall_thickness,wall_thickness,wall_thickness], center=true);
+			}
 		}
 	}
 }
+
+cherry_mx_plunger( d=plunger_diameter, h=plunger_height, concave=plunger_concave, reinforcement=plunger_reinforcement);
