@@ -8,6 +8,9 @@ plunger_diameter = 22;
 // height of the plunger
 plunger_height = 5;
 
+// concave top? this will only work with diameter==22. ...can't be bothered with math right now.
+plunger_concave =false;
+
 
 /* values from happ:
 (i assume their values are inches, since there is no unit...)
@@ -27,23 +30,35 @@ module torus(r, d){
 			circle(r=r);
 }
 
-module plunger(d, h, convex){
+module plunger(d, h, concave){
 	translate([0,0,-wall_thickness])
 	difference(){
-		union(){
-			difference(){
-				torus( r=d/10, d=d );
-				translate([0,0,d/2])
-					cube( [d,d,d], center=true );
+		difference(){
+			union(){
+				difference(){
+					torus( r=d/10, d=d );
+					translate([0,0,d/2])
+						cube( [d,d,d], center=true );
+				}
+				translate([0,0,-d/10])
+					cylinder( h=d/10, r=d/2 - d/10, center=false);
+				cylinder( h=h-(d/10), r=d/2 , center=false);
 			}
-			translate([0,0,-d/10])
-				cylinder( h=d/10, r=d/2 - d/10, center=false);
-			cylinder( h=h-(d/10), r=d/2 , center=false);
+			translate([0,0,wall_thickness])
+				cylinder( h=h-(d/10), r=d/2-1 , center=false);
 		}
-		translate([0,0,wall_thickness])
-			cylinder( h=h-(d/10), r=d/2-1 , center=false);
+		if( true == concave ){
+			if( 22 == plunger_diameter ){
+				// trial and error concave. TODO: recall basic trigonometry...
+				translate([0,0,-d*2-1.3])
+					sphere( r=d*2);
+			}
+		}
 	}
 }
 
-plunger(d=plunger_diameter, h=plunger_height, convex=true);
-
+difference(){
+	plunger(d=plunger_diameter, h=plunger_height, concave=true);
+	translate([0,0,-plunger_diameter/2])
+	cube([plunger_diameter,plunger_diameter,plunger_diameter]);
+}
