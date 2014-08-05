@@ -1,5 +1,7 @@
 $fn=60;
 
+use <../torus.scad>
+
 // thickness of the wall.
 wall_thickness = 1;
 
@@ -24,22 +26,13 @@ threaded body diam = 1.10in (27.95mm)
 mounting hole diameter = 1.13in (28.7mm)
 */
 
-module torus(r, d){
-	rotate_extrude(convexity = 10)
-		translate([d/2-r, 0, 0])
-			circle(r=r);
-}
 
 module plunger(d, h, concave){
 	translate([0,0,-wall_thickness])
 	difference(){
 		difference(){
 			union(){
-				difference(){
-					torus( r=d/10, d=d );
-					translate([0,0,d/2])
-						cube( [d,d,d], center=true );
-				}
+				half_torus( r=d/10, d=d );
 				translate([0,0,-d/10])
 					cylinder( h=d/10, r=d/2 - d/10, center=false);
 				cylinder( h=h-(d/10), r=d/2 , center=false);
