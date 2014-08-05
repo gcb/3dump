@@ -57,8 +57,4 @@ module plunger(d, h, concave){
 	}
 }
 
-difference(){
-	plunger(d=plunger_diameter, h=plunger_height, concave=true);
-	translate([0,0,-plunger_diameter/2])
-	cube([plunger_diameter,plunger_diameter,plunger_diameter]);
-}
+plunger(d=plunger_diameter, h=plunger_height, concave=true);
