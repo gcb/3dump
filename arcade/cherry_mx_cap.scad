@@ -19,7 +19,7 @@ plunger_reinforcement = true;
 
 
 // rotate it upside down for 1) print easier, 2) look better on thingverse screen shot
-mirror([0,0,1]) translate([0,0,plunger_height]){
+translate([0,0,plunger_height]){
 	plunger(d=plunger_diameter, h=plunger_height, concave=plunger_concave);
 	mx_mount();
 	if( true == plunger_reinforcement ){
