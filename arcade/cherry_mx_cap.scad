@@ -19,13 +19,13 @@ plunger_reinforcement = true;
 
 module cherry_mx_plunger(d, h, concave, reinforcement){
 	// rotate it upside down for 1) print easier, 2) look better on thingverse screen shot
-		plunger(d=plunger_diameter, h=plunger_height, concave=plunger_concave);
+		plunger(d=d, h=h, concave=concave);
 		mx_mount();
 		if( true == plunger_reinforcement ){
 			translate([0,0,wall_thickness/2 ]){
-				cube([plunger_diameter-wall_thickness,wall_thickness,wall_thickness], center=true);
+				cube([d-wall_thickness,wall_thickness,wall_thickness], center=true);
 				rotate([0,0,90])
-					cube([plunger_diameter-wall_thickness,wall_thickness,wall_thickness], center=true);
+					cube([d-wall_thickness,wall_thickness,wall_thickness], center=true);
 			}
 		}
 }
