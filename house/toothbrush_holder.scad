@@ -1,9 +1,9 @@
-$fn = 200;
+$fn = 8;
 //use <../torus.scad>
 /** custom torums */
 module custom_torus(r,d){
 		rotate_extrude(convexity = 10)
-				translate([d/2-r/2, 0, 0])
+				translate([d/2-r, 0, 0])
 							child();
 }
 
@@ -24,7 +24,7 @@ but i think that should work. let's print and see...
 difference(){
 	// the oval torus
 	translate([0,0,10])
-	custom_torus(r=15, d=41)
+	custom_torus(r=15/2, d=41)
 		scale([1,2.69,1])
 			circle(r=13/2);
 
