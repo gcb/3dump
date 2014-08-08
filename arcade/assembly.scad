@@ -22,7 +22,7 @@ union(){
 	translate([0,0,1 + 4 + 5.5 + 0.6 + plate_depth/2]){ // switch offset + steam + top + height of tab
 		difference(){
 			// the circular base
-			circle(h=plate_depth, r=30/2-0.1, center=true);
+			cylinder(h=plate_depth, r=30/2-0.1, center=true);
 			// the hole for the switch TODO: should we bother about space to remove top without removing bottom? nah.. idiotic since the switch is in a tube. easier to remove.
 			cube([13.97, 13.97, 10], center=true);
 			// space for the clips
