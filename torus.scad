@@ -30,4 +30,11 @@ module ring_torus(r,d){
 	}
 }
 
+/** custom torums */
+module custom_torus(r,d){
+	rotate_extrude(convexity = 10)
+		translate([d/2-r/2, 0, 0])
+			child();
+}
+
 
