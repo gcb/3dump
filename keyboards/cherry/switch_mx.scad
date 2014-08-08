@@ -11,8 +11,8 @@ This is just to illustrate and to drop in a a gross reference. It is mostly arti
 // move the whole thing 3mm to give the empty space in usual keycaps.
 // that is, the extra space inside a keycap female connector.
 // i do that since i create all my keycaps with 0,0,0 being the internal base of the keycap
-translate([0,0,-3])
-{
+module cherry_mx_switch(){
+
 
 	//1. steam
 	color("brown"){
@@ -121,5 +121,3 @@ translate([0,0,-3])
 		}
 
 }
-
-
