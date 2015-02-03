@@ -26,6 +26,7 @@ except ImportError:
 	# damn debian and its ancient versions of non essential software
 	import bpy
 	Blender_available = False
+import ply
 
 def add_to_scene(obj):
 	if not Blender_available:
